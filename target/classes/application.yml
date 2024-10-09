@@ -1,0 +1,58 @@
+cors:
+  allowedOrigin: '*'
+  allowedMethods: '*'
+  allowedHeaders: '*'
+  allowedCredentials: true
+  corsConfiguration: '/**'
+
+  runtime: java
+env: flex
+
+handlers:
+  - url: /.*
+
+
+health_check:
+  enable_health_check: False
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/jurong_demo5
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: bharathkrishnanbsc@gmail.com
+    password: mtougxvajbfbdwaq
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+        ssl:
+          enable: true
+  lifecycle:
+    timeout-per-shutdown-phase: 0s
+server:
+
+  port: 8080
+  connection-timeout: 590000
+
+stripe:
+  secretKey: ${STRIPE_SECRET_KEY:sk_test_51P8wrNJgR2J5aA0Ld8mrld13voLyTnVOXOTHeWJ4baI2cjprivwkUueJEcZyHr2O28lQ0KL7f858l9HTkrMNjMQn00xyOkr5Zc}
+  webhookSecret: ${STRIPE_WEBHOOK_SECRET:whsec_b295ce47a391503d2e33270c2cdc5684ace676b3556b37af2c0c7f77b59d9741}
+
+main:
+  datasource:
+    hikari:
+      max-lifetime: 590000
+
+logging:
+  level:
+    org.springframework.mail: DEBUG
